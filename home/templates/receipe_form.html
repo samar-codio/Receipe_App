@@ -2,10 +2,10 @@
 {%block start%}
 
 <div class="container">
-    <form class="mt-4 mb-4 col-6 mx-auto card p-3 shadow-lg bg-lightgrey" method="POST" enctype="multipart/form-data">
+    <form class="mt-5 mb-4 col-5 mx-auto card p-3 shadow-lg bg-lightgrey " method="POST" enctype="multipart/form-data">
         {%csrf_token%}
         {{ form.as_p }}
-        <div class="form mb-4">
+        <div class="mb-4 ">
 
 
             <h3>Receipe Name</h3>
@@ -21,50 +21,53 @@
             <input name="receipe_image" required type="file" class="form-control"
                 placeholder="Enter Receipe Description">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-
+        <button type="submit" class="btn btn-dark shadow">Submit</button>
     </form>
     <div class="row mb-4">
-        <form class="col-12">
+        <form class="col-12 ">
             <div class="row">
-                <div class="col-10"> 
+                <div class="col-10 shadow-lg">
                     <input type="text" name="search" class="form-control" placeholder="Search Receipe">
                 </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                <div class="col-2 shadow-lg">
+                    <button type="submit" class="btn btn-dark shadow w-100">Search</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="rounded-5">
+        <table class="table shadow-lg mb-5 border">
+            <thead class="">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            {% for rec in receipe_data %}
-            <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{rec.receipe_name}}</td>
-                <td>{{rec.receipe_description}}</td>
-                <td><img src="/media/{{rec.receipe_image}}" style="height : 200px"></td>
-                <td>
-                    <a href="/delete_receipe/{{rec.id}}/" class="btn btn-danger">Delete</a>
-                    <a href="/update_receipe/{{rec.id}}/" class="btn btn-success">Update</a>
-                </td>
-            </tr>
-            {% endfor %}
+                {% for rec in receipe_data %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{rec.receipe_name}}</td>
+                    <td>{{rec.receipe_description}}</td>
+                    <td><img class="rounded-5" src="/media/{{rec.receipe_image}}" style="height : 200px"></td>
+                    <td>
 
-        </tbody>
-    </table>
+                        <a href="/delete_receipe/{{rec.id}}/" class="btn btn-danger">Delete</a>
+                        <a href="/update_receipe/{{rec.id}}/" class="btn btn-success">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
 </div>
 
 
